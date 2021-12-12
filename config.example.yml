@@ -1,0 +1,9 @@
+address: :22
+username: jump_username
+password: jump_password
+token: github_token_with_codespace_scope
+identity: |
+  -----BEGIN OPENSSH PRIVATE KEY-----
+  the private key to authenticate with codespace
+  also the host key of the jump server
+  -----END OPENSSH PRIVATE KEY-----
