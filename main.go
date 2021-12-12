@@ -56,7 +56,12 @@ func setup() error {
 	if err != nil {
 		return err
 	}
-	state.identity = path.Join(dir, "csjump-identity")
+	dir = path.Join(dir, "csjump")
+	err = os.MkdirAll(dir, 0777)
+	if err != nil {
+		return err
+	}
+	state.identity = path.Join(dir, "identity")
 	err = os.WriteFile(state.identity, []byte(config.Identity), 0600)
 	if err != nil {
 		return err
