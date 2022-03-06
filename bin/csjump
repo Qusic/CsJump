@@ -1,0 +1,4 @@
+#!/bin/ash
+set -euo pipefail
+port=$(yq -e .port config.yml)
+exec socat tcp-listen:$port,fork,reuseaddr exec:connect

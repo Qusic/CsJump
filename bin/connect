@@ -1,0 +1,6 @@
+#!/bin/ash
+set -euo pipefail
+export GITHUB_TOKEN=$(yq -e .token config.yml)
+repository=$(yq -e .repository config.yml)
+codespace=$(gh codespace list --json name,repository --jq "map(select(.repository == \"$repository\"))[0] | .name")
+exec gh codespace ssh --codespace $codespace --stdio
