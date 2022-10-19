@@ -1,3 +1,4 @@
 port: 22
 token: github token with codespace scope
+pubkey: openssh public key content
 repository: github repository to select codespace
