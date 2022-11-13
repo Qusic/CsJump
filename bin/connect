@@ -1,7 +1,4 @@
 #!/bin/ash
 set -euo pipefail
-export GITHUB_TOKEN=$(yq -e .token config.yml)
-yq -e .pubkey config.yml > key.pub
-repository=$(yq -e .repository config.yml)
-codespace=$(gh codespace list --repo $repository --json name --jq '.[0].name')
-exec gh codespace ssh --codespace $codespace --stdio -- -i key
+CODESPACE=$(gh codespace list --repo $REPOSITORY --json name --jq '.[0].name')
+exec gh codespace ssh --codespace $CODESPACE --stdio -- -i $IDENTITY

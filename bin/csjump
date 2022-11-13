@@ -1,4 +1,9 @@
 #!/bin/ash
 set -euo pipefail
-port=$(yq -e .port config.yml)
-exec socat tcp-listen:$port,fork,reuseaddr exec:connect
+CONFIG=${1:-config.yml}
+PORT=$(yq -e .port "$CONFIG")
+export GITHUB_TOKEN=$(yq -e .token "$CONFIG")
+export IDENTITY="key"
+export REPOSITORY=$(yq -e .repository "$CONFIG")
+yq -e .pubkey "$CONFIG" > "$IDENTITY.pub"
+exec socat tcp-listen:$PORT,fork,reuseaddr exec:connect
